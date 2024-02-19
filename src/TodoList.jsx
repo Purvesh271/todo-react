@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 export default function TodoList(){
-    let[Todos,setTodos] = useState([]);
+    let[Todos,setTodos] = useState([{task:"",id:Date.now()}]);
     let[NewTodo,setNewTodo] = useState("");
 
     let add = ()=>{
-        setTodos([...Todos, NewTodo]);
+        setTodos([...Todos, {task:NewTodo,id:Date.now()}]);
         setNewTodo("");
     }
 
@@ -23,8 +23,9 @@ export default function TodoList(){
             <br></br>
 
             <ul>
+                
                 {Todos.map((todo) => {
-                    return <li>{todo}</li>
+                    return <li key={todo.id}>{todo.task}</li>
                 })}
             </ul>
         </div>
