@@ -13,6 +13,12 @@ export default function TodoList(){
         setNewTodo(event.target.value);
     }
 
+    let deleteTask = (id)=>{
+        console.log(id,"deleted");
+        setTodos(Todos.filter((todo) => todo.id !=id));
+
+    }
+
     return(
         <div>
             <h2>Todo List</h2>
@@ -24,9 +30,13 @@ export default function TodoList(){
 
             <ul>
                 
-                {Todos.map((todo) => {
-                    return <li key={todo.id}>{todo.task}</li>
-                })}
+                {Todos.map((todo) => (
+                    <li key={todo.id}>
+                        <span> {todo.task} </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <button onClick={()=>{deleteTask(todo.id)}}>delete</button>
+                    </li>
+                ))}
             </ul>
         </div>
     );
